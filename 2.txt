@@ -1,0 +1,68 @@
+Layout Steps: 
+Requirements of the application - Linear layout, Radio group, 4 Radio buttons, 
+1 TextView,1 button. 
+Steps: 
+1. Drag and drop linear layout (vertical) from the layout menu. 
+2. Drag and drop 1st TextView in layout: 
+ Change the id: textView1 
+ Set its position (top, bottom, left, right). 
+ Change the text to display the intended question. 
+3. Drag and drop RadioGroup from the button menu. 
+4. Drag and drop Radio Button in the RadioGroup. 
+5. Repeat step 4 three times to drop four radio buttons. 
+6. Change the id of radio buttons to option1, option2, option3, option4 
+respectively. 
+7. Change the text of radio button to string (option text) for each radio 
+button. 
+8. Drag and drop a button from the button menu: 
+a) Change the id to button. 
+b) Change text to "Check Answer". 
+Java Code: (MainActivity.java) 
+package com.example.quiz; 
+ 
+import android.os.Bundle; 
+import android.view.View; 
+import android.widget.Button; 
+import android.widget.RadioButton; 
+import android.widget.Toast; 
+ 
+import androidx.activity.EdgeToEdge; 
+import androidx.appcompat.app.AppCompatActivity; 
+import androidx.core.graphics.Insets; 
+import androidx.core.view.ViewCompat; 
+import androidx.core.view.WindowInsetsCompat; 
+ 
+public class MainActivity extends AppCompatActivity { 
+    @Override 
+    protected void onCreate(Bundle savedInstanceState) { 
+        super.onCreate(savedInstanceState); 
+        EdgeToEdge.enable(this); 
+        setContentView(R.layout.activity_main); 
+        RadioButton radiobutton1=findViewById(R.id.Option1); 
+        RadioButton radiobutton2=findViewById(R.id.Option2); 
+        RadioButton radiobutton3=findViewById(R.id.Option3); 
+        RadioButton radiobutton4=findViewById(R.id.Option4); 
+ 
+        Button button = findViewById(R.id.submit); 
+        button.setOnClickListener(new View.OnClickListener(){ 
+            public void onClick(View view) { 
+                String selectedAns = "no Selection"; 
+                if (radiobutton1.isChecked()){ 
+                    selectedAns=radiobutton1.getText().toString(); 
+                } else if (radiobutton2.isChecked()) { 
+                    selectedAns = radiobutton2.getText().toString(); 
+                } else if (radiobutton3.isChecked()) { 
+                    selectedAns = radiobutton3.getText().toString(); 
+                } else if (radiobutton4.isChecked()) { 
+                    selectedAns = radiobutton4.getText().toString(); 
+                } 
+                if(selectedAns.equals("javascript object notation")){ 
+                    Toast.makeText(MainActivity.this,"Correct Answer", 
+Toast.LENGTH_SHORT).show(); 
+                } else 
+                    Toast.makeText(MainActivity.this,"Wrong Answer", 
+Toast.LENGTH_SHORT).show(); 
+            } 
+        }); 
+    } 
+} 
